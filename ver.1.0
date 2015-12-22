@@ -1,0 +1,244 @@
+// Author: Jinho Seo
+// Date: 09-22-2015
+// Contact: brownkpt60@gmail.com
+// Description:
+
+#include <iostream>
+#include <windows.h> // access Sleep(), Beep(), SetConsoleTitle() ?library functions
+#include <string> // string type access.
+using namespace std;
+
+// function prototype
+void morseCode(char);
+void dot() {
+	Beep(700, 100); // sound of a DOT
+	cout << '.'; // print a DOT
+	Sleep(500); // wait for 5oo milliseconds
+}
+void dash() {
+	Beep(800, 200); // sound of a DASH
+	cout << '-'; // print a DASH
+	Sleep(500); // wait 5oo milliseconds
+}
+void blank() // print blank without sound.
+{
+	cout << '/'; // print a Slash to separate letters
+}
+
+int main() {
+
+	cout << "--+ Morse Code Trainer +--" << endl << endl; // Morse code Trainer APP title.
+
+	string in; // store sentence to string
+	
+	cout << "Please Enter a Sentence to Translate : ";
+	getline(cin, in, '\n');
+
+	int len = in.length(); // get length of string.
+
+	cout << "Input  : " << in << endl; // display input
+	cout << "Output : ";
+	for (int i = 0; i < len; i++)
+	{
+		char letter = in[i]; // get ith character from string.
+		morseCode(letter); // convert to Morse code sound and dot-dash print
+		Sleep(500); // wait (about) 5oo milliseconds
+	}
+	cout << endl; // skip lines
+	cout << endl;
+
+	int option = 0; // variable to store user's selection
+	
+	while (true)
+	{
+		cout << "Pleaese select option to dispaly : " << endl; // provide options to users
+		cout << "1. Repeat input message " << endl;
+		cout << "2. Dispaly letter by letter " << endl;
+		//cout << "3. Translate new message" << endl;
+		cout << "3. Exit program" << endl;
+		cin >> option; // store user's selsction.
+
+		if (option == 1) // option1. repeat the input message
+		{
+			cout << "Input  : " << in << endl; // display input
+			cout << "Output : "; 
+			for (int i = 0; i < len; i++) // dispaly output (morse code)
+			{
+				char letter = in[i]; // get ith character from string.
+				morseCode(letter); // convert to Morse code sound and dot-dash print
+				Sleep(500); // wait (about) 1ooo milliseconds
+			}
+			cout << endl; // skip lines
+			cout << endl;
+		}
+		else if (option == 2) // option2 . dispaly morse code letter by letter.
+		{
+			for (int i = 0; i < len; i++)
+			{
+				char letter = in[i]; // get ith character from string.
+				cout << "Letter["<<letter<<"] : "; // display character
+				morseCode(letter); // convert to Morse code sound and dot-dash print
+				cout << endl; // skip a line on output
+				Sleep(500); // wait (about) 5oo milliseconds
+			}
+			cout << endl; // skip a line
+		}
+		
+		/*
+		else if (option == 3) // option3. ask user to input new message to translate.
+		{
+			cin.ignore(); // ignore white space in order to input new sentece to translate.
+			//string in; // empty in 
+			cout << "Please Enter a New Sentence to Translate : ";  // ask user to input new message
+			getline(cin, in);
+						
+			cout << "Input  : " << in << endl; // display input
+			cout << "Output : "; // dispaly output followed by for loop
+
+			for (int i = 0; i < len; i++)
+			{
+				char letter = in[i]; // get ith character from string.
+				morseCode(letter); // convert to Morse code sound and dot-dash print
+				Sleep(100); // wait (about) 1ooo milliseconds
+			}
+			cout << endl; // skip lines
+			cout << endl;
+		}
+		*/ // need to update feature in next version...
+
+		else if (option == 3) // option4. exit the program.
+		{
+			break;
+		}
+		else // vaildate user's input.
+			cout << "\n!! Please Enter valid selection !!" << endl << endl;
+
+	}
+	
+	system("pause");
+	return 0;
+}
+// end of main
+// INPUT: character
+// OUTPUT: Morse Code sounds and dot-dash print
+
+void morseCode(char letter) // look for pattern in here ?
+{
+	switch (toupper(letter)) { // change character into its Morse code sounds.
+	case 'A':
+		dot(); dash();
+		break;
+	case 'B':
+		dash(); dot(); dot(); dot();
+		break;
+	case 'C':
+		dash(); dot(); dash(); dot();
+		break;
+	case 'D':
+		dash(); dot(); dot();
+		break;
+	case 'E':
+		dot();
+		break;
+	case 'F':
+		dot(); dot(); dash(); dot();
+		break;
+	case 'G':
+		dash(); dash(); dot();
+		break;
+	case 'H':
+		dot(); dot(); dot(); dot();
+		break;
+	case 'I':
+		dot(); dot();
+		break;
+	case 'J':
+		dot(); dash(); dash(); dash();
+		break;
+	case 'K':
+		dash(); dot(); dash();
+		break;
+	case 'L':
+		dot(); dash(); dot(); dot();
+		break;
+	case 'M':
+		dash(); dash();
+		break;
+	case 'N':
+		dash(); dot();
+		break;
+	case 'O':
+		dash(); dash(); dash();
+		break;
+	case 'P':
+		dot(); dash(); dash(); dot();
+		break;
+	case 'Q':
+		dash(); dash(); dot(); dash();
+		break;
+	case 'R':
+		dot(); dash(); dot();
+		break;
+	case 'S':
+		dot(); dot(); dot();
+		break;
+	case 'T':
+		dash();
+		break;
+	case 'U':
+		dot(); dot(); dash();
+		break;
+	case 'V':
+		dot(); dot(); dot(); dash();
+		break;
+	case 'W':
+		dot(); dash(); dash();
+		break;
+	case 'X':
+		dash(); dot(); dot(); dash();
+		break;
+	case 'Y':
+		dash(); dot(); dash(); dash();
+		break;
+	case 'Z':
+		dash(); dash(); dot(); dot();
+		break;
+	case ' ':// blank space print "/" to separate letters, need a pause without sound.
+		blank(); 
+		break;
+	case '1':
+		dot(); dash(); dash(); dash(); dash();
+		break;
+	case '2':
+		dot(); dot(); dash(); dash(); dash();
+		break;
+	case '3':
+		dot(); dot(); dot(); dash(); dash();
+		break;
+	case '4':
+		dot(); dot(); dot(); dot(); dash();
+		break;
+	case '5':
+		dot(); dot(); dot(); dot(); dot();
+		break;
+	case '6':
+		dash(); dot(); dot(); dot(); dot();
+		break;
+	case '7':
+		dash(); dash(); dot(); dot(); dot();
+		break;
+	case '8':
+		dash(); dash(); dash(); dot(); dot();
+		break;
+	case '9':
+		dash(); dash(); dash(); dash(); dot();
+		break;
+	case '0':
+		dash(); dash(); dash(); dash(); dash();
+		break;
+		// vaildate input letter
+	default:
+		cout << "bad input" << endl;
+		break;
+	}
+} // end of Morse code
